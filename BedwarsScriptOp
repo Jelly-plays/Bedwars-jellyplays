@@ -1,0 +1,110 @@
+local Library = loadstring(game:HttpGet("https://pastebin.com/raw/vff1bQ9F"))()
+local Window = Library.CreateLib("bedwars script", "DarkTheme")
+local Tab = Window:NewTab("world")
+local Section = Tab:NewSection("no fall damage")
+MainSection:NewToggle("No Fall Damage", "Opens No Fall Damage", function(callback)
+    local nofall = true
+    if callback then
+        if nofall then
+            spawn(function()
+                repeat
+                    wait()
+                    if nofall == false then
+                        return end
+                        game:GetService("ReplicatedStorage").rbxts_include.node_modules.net.out._NetManaged.GroundHit:FireServer()
+                    until nofall == false
+                end)
+            end
+    else
+        local nofall = false
+    end
+end)
+
+local Tab = Window:NewTab("player")
+local Section = Tab:NewSection("for player")
+Section:NewButton("Inf Jumps", "Loads My Old Script", function()
+local InfiniteJumpEnabled = true
+game:GetService("UserInputService").JumpRequest:connect(function()
+	if InfiniteJumpEnabled then
+		game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
+	end
+end)
+end)
+
+Section:NewToggle("KillAura", "Autoswing the sword if someone is near you", function(state)
+	if state then
+		BindToStepped("Killaura", 1, function()
+			if entity.isAlive then
+				KillauraRemote()
+			end
+		end)
+	else
+		UnbindFromStepped("Killaura")
+	end
+end)
+Section:NewSlider("Distance 1-20", "Increase killaura distance", 20, 1, function(val)
+	DistVal["Value"] = val
+end)
+Section:NewToggle("No Swing", "Disable killaura swing", function(state)
+	if state then
+		if killauraswing["Enabled"] == true then
+			killauraswing["Enabled"] = false
+		end
+	else
+		if killauraswing["Enabled"] == false then
+			killauraswing["Enabled"] = true
+		end
+	end
+end)
+Section:NewSlider("Sound 1-0", "Adjust killaura sound", 1, 0, function(val)
+	killaurasoundval["Value"] = val
+end)
+
+Section:NewToggle("BedNuker", "Auto break bed and covers", function(state) 
+         if state then 
+                 BindToStepped("BedNuker", 1, function() 
+                         nuker() 
+                 end) 
+         else 
+                 UnbindFromStepped("BedNuker") 
+         end 
+end) 
+
+Section:NewToggle("Velocity", "Prevents taking a knockback", function(state) 
+         if state then 
+                 KnockbackTable["kbDirectionStrength"] = 0 
+                 KnockbackTable["kbUpwardStrength"] = 0 
+         else 
+                 KnockbackTable["kbDirectionStrength"] = 100 
+                 KnockbackTable["kbUpwardStrength"] = 100 
+         end 
+end)
+
+Section:NewButton("Zombie Animation" , "Plays Zombie Animation",function()
+loadstring(game:HttpGet("https://pastebin.com/raw/t3yTSPRn",true))()
+end)
+Section:NewButton("Ninja Animation","Plays Ninja Animation",function()
+loadstring(game:HttpGet("https://pastebin.com/raw/bwGLPVV7",true))()
+end)
+Section:NewButton("Robot Animation","Plays Robot Animation",function()
+local Animate =
+game.Players.LocalPlayer.Character.Animate
+Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=616088211"
+Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=616089559"
+Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=616095330"
+Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=616091570"
+Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=616090535"
+Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=616086039"
+Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=616087089"
+end)
+Section:NewButton("Toy Animation","Opens Toy Animation",function()
+local Animate =
+game.Players.LocalPlayer.Character.Animate
+Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=782841498"
+Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=782845736"
+Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=782843345"
+Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=782842708"
+Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=782847020"
+Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=782843869"
+Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=782846423"
+end)
